@@ -89,10 +89,20 @@ class Warrior(Hero):
 class Magic(Hero):
     def __init__(self, name, health, damage):
         super().__init__(name, health, damage, 'BOOST')
+        self.__plus_damage = randint(1, 5)
 
     def apply_super_power(self, boss, heroes_list):
-        # TODO here will be implementation of boosting
-        pass
+        for hero in heroes_list:
+            if hero.health > 0:
+                hero.damage += self.plus_damage
+
+    @property
+    def plus_damage(self):
+        return self.__plus_damage
+
+    @plus_damage.setter
+    def plus_damage(self, value):
+        self.__plus_damage = value
 
 
 class Berserk(Hero):
@@ -157,6 +167,7 @@ def play_round(boss, heroes_list):
     for hero in heroes_list:
         if hero.health > 0 and boss.health > 0 and boss.defence != hero.ability:
             hero.attack(boss)
+            print(f'{hero.name} did {hero.damage} of damage')
             hero.apply_super_power(boss, heroes_list)
     show_statistics(boss, heroes_list)
 
