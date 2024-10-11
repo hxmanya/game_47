@@ -97,7 +97,6 @@ class Magic(Hero):
                 hero.damage += plus_damage
 
 
-
 class Berserk(Hero):
     def __init__(self, name, health, damage):
         super().__init__(name, health, damage, 'BLOCK_DAMAGE')
@@ -125,7 +124,6 @@ class Medic(Hero):
         for hero in heroes_list:
             if hero.health > 0 and hero != self:
                 hero.health += self.__heal_points
-                
 
 
 class Witcher(Hero):
@@ -138,6 +136,7 @@ class Witcher(Hero):
                 hero.health = self.health
                 self.health = 0
                 print(f'Witcher {self.name} revived {hero.name} by giving him own life({hero.health}hp).')
+
 
 class Hacker(Hero):
     def __init__(self, name, health, damage):
@@ -178,9 +177,10 @@ class Gambler(Hero):
                 print(f'Gambler {self.name} did {dice_1 + dice_2} of damage '
                       f'to his own teammate {chosen_hero.name}')
 
+
 class Avenger(Hero):
     def __init__(self, name, health, damage):
-        super().__init__(name, health,damage, 'DEFENCE_TEAM')
+        super().__init__(name, health, damage, 'DEFENCE_TEAM')
 
     def apply_super_power(self, boss, heroes_list):
         global if_boss_attack
@@ -190,7 +190,6 @@ class Avenger(Hero):
             print(f'Avenger {self.name} created a defense for the entire team for the next round')
         else:
             if_boss_attack = True
-
 
 
 round_number = 0
@@ -245,7 +244,6 @@ def start_game():
     hacker = Hacker(name='Ego', health=110, damage=10)
     gambler = Gambler(name='Marat', health=100, damage=1)
     avenger = Avenger(name='Aqua', health=120, damage=10)
-
 
     heroes_list = [warrior_1, doc, warrior_2, magic, berserk, assistant, witcher, hacker, gambler, avenger]
     show_statistics(boss, heroes_list)
